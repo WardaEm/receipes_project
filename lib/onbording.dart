@@ -12,7 +12,22 @@ class OnboardingScreen extends StatefulWidget {
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
   int currentindex=0;
+
   final controller=PageController(initialPage: 0);
+bool isLastPage=false;
+@override
+  void initState() {
+
+    super.initState();
+
+}
+
+@override
+  void dispose() {
+controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -27,6 +42,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         itemCount: contents.length,
         onPageChanged: (int index){
           currentindex=index;
+          setState(() {
+
+            isLastPage=index==2;
+          });
         },
 
       ),
@@ -40,32 +59,43 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
 
-                  ElevatedButton(onPressed: (){
-                    print('drtfgyuhij');
-                    if (currentindex != contents.length ) {
-                      controller.jumpToPage(currentindex-1);
-                    }
-
-
-
-                  }, child: Text('SKIP'),),
+                 TextButton(onPressed: ()=>controller.jumpToPage(0)
+                    // if (currentindex != contents.length ) {
+                    //   controller.jumpToPage(currentindex-1);
+                    // }
+                 , child: Text('SKIP'),),
 
                   Row(
                     children: [
-                      ElevatedButton(onPressed: (){
-                        print ('dfdfd');
-                        if(currentindex!=contents.length-1){
-                          controller.jumpToPage(currentindex+ 1);
-                        }else{
+         TextButton(onPressed: () {
+           if (isLastPage) {
+             Navigator.push(context, MaterialPageRoute(builder: (context) =>
+                 MyHomePage()));
+           }
+           else {
+             controller.nextPage(
+                 duration: Duration(milliseconds: 500),
+                 curve: Curves.easeInOut);
+           }
+         }   ,child: Text(isLastPage?'GetStarted':'NEXT'),)
 
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
-                        }
-
-
-
-                      },child: Text('Next')),
                     ],
-                  )
+                  ),
+                  // Row(
+                  //   children: [
+                  //    TextButton(onPressed: (){
+                  //         Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHomePage()));
+                  //       }
+                  //
+                  //
+                  //
+                  //
+                  //
+                  //         ,child: Text(isLastPage ?'Getstarted':'Next'),),
+                  //
+                  //
+                  //   ],
+                  // )
 
                 ]
 
@@ -73,8 +103,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
             ),
           ),
-    ]
-      )
+]
+    )
+
 
     );
   }
