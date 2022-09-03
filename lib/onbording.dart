@@ -87,14 +87,14 @@ color: Colors.yellow[100],
 
        Image.asset(boarding.image,
     fit: BoxFit.cover,
-    height: 400,
+    height: 500,
          width: 500,
        ),
 SizedBox(height: 10,),
         Text(boarding.title,style: TextStyle(
             fontSize: 30,
         ),),
-        SizedBox(height: 10,),
+        SizedBox(height: 5,),
 
         Center(
           child: Padding(
