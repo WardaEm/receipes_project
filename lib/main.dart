@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:receipe/home.dart';
+import 'package:receipe/login.dart';
 
 import 'onbording.dart';
 

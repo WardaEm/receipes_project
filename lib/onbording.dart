@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:receipe/home.dart';
+import 'package:receipe/login.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'content.dart';
@@ -70,7 +70,7 @@ controller.dispose();
          TextButton(onPressed: () {
            if (isLastPage) {
              Navigator.push(context, MaterialPageRoute(builder: (context) =>
-                 MyHomePage()));
+               Login()));
            }
            else {
              controller.nextPage(
